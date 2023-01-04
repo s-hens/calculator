@@ -1,0 +1,88 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+}
+
+.calculator {
+    width: 216px;
+    padding: 4px;
+    background-color: #C1C8E4;
+}
+
+#display {
+    padding: 4px 4px 0;
+    margin-bottom: -2px;
+    font-size: 36px;
+    line-height: 36px;
+    text-align: right;
+}
+
+#controls {
+    font-size: 0;
+    line-height: 0;
+}
+
+button {
+    border: none;
+    padding: 10px;
+    text-align: center;
+    font-family: 'DM Mono', monospace;
+    color: white;
+    font-size: 36px;
+    line-height: 20px;
+    width: 50px;
+    height: 50px;
+    margin: 2px;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+button[name="zero"] {
+    width: 104px;
+}
+
+button.num {
+    background-color: #5680E9;
+}
+
+button.op, button.equals {
+    background-color: #BF56E9;
+
+}
+
+button[name="divide"] {
+    transform: translateY(7px);
+}
+
+button.ac, button.del, button.sign {
+    background-color: #7656E9;
+}
+
+button.sign {
+    transform: translateY(7px);
+}
+
+button.ac {
+    font-size: 20px;
+    transform: translateY(2px);
+}
+
+button.del {
+    font-size: 14px;
+}
+
+#history {
+    width: 196px;
+    padding: 4px;
+    text-align: right;
+}

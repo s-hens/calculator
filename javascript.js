@@ -82,8 +82,13 @@ function operate() {
     if (currentEq.operator == "-") c = a - b;
     if (currentEq.operator == "*") c = a * b;
     if (currentEq.operator == "/" && b != 0) c = a / b;
+    //Display result
     display.innerText = `${c}`;
-    history.innerHTML = history.innerHTML + `<br>${a} ${currentEq.operator} ${b} = ${c}`;
+    if (history.innerHTML == ``) {
+        history.innerHTML = `${a} ${currentEq.operator} ${b} = ${c}`;
+    } else {
+        history.innerHTML = history.innerHTML + `<br>${a} ${currentEq.operator} ${b} = ${c}`;
+    }
     //c is the new num1. User can either continue by choosing an operator, or start typing an entirely new equation.
     currentEq.num1 = c;
     currentEq.operator = "await";
