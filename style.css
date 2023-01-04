@@ -19,10 +19,11 @@ body {
 
 #display {
     padding: 4px 4px 0;
-    margin-bottom: -2px;
+    margin: 2px 2px -2px;
     font-size: 36px;
     line-height: 36px;
     text-align: right;
+    background-color: #D8DDEE ;
 }
 
 #controls {
@@ -55,17 +56,28 @@ button.num {
     background-color: #5680E9;
 }
 
-button.op, button.equals {
-    background-color: #BF56E9;
-
+button.num:hover {
+    background-color: #4B70CC;
 }
 
-button[name="divide"] {
-    transform: translateY(7px);
+button.op, button.equals {
+    background-color: #BF56E9;
+}
+
+button.op:hover, button.equals:hover {
+    background-color: #A74BCC;
 }
 
 button.ac, button.del, button.sign {
     background-color: #7656E9;
+}
+
+button.ac:hover, button.del:hover, button.sign:hover {
+    background-color: #674BCC;
+}
+
+button[name="divide"] {
+    transform: translateY(7px);
 }
 
 button.sign {
