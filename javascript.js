@@ -34,12 +34,20 @@ const equalsButton = document.querySelector("button.equals");
 equalsButton.addEventListener("click", operate);
 
 function operate() {
+    //Get the pieces of the equation
     let a = Number(currentEquation.num1);
     let b = Number(currentEquation.num2);
     let c;
+    //No dividing by 0 allowed
+    if (currentEquation.operator == "/" && b == 0) console.log("You can't divide by 0, but nice try.");
+    //Put the pieces together and perform the equation
     if (currentEquation.operator == "+") c = a + b;
     if (currentEquation.operator == "-") c = a - b;
     if (currentEquation.operator == "*") c = a * b;
-    if (currentEquation.operator == "/") c = a / b;
+    if (currentEquation.operator == "/" && b != 0) c = a / b;
     console.log(c);
+    //Clear the currentEquation object
+    currentEquation.num1 = ``;
+    currentEquation.operator = ``;
+    currentEquation.num2 = ``;
 }
