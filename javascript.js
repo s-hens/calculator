@@ -1,53 +1,91 @@
-const currentEquation = {
+//Elements
+
+const currentEq = {
     num1: ``,
     operator: ``,
     num2: ``,
 }
-
+const display = document.getElementById("display");
 const numButtons = document.querySelectorAll("button.num");
+const operatorButtons = document.querySelectorAll("button.op");
+const equalsButton = document.querySelector("button.equals");
+const signButton = document.querySelector("button.sign");
+let isNegative = false;
+
+//Event listeners
 
 numButtons.forEach(button => button.addEventListener("click", getNum));
+operatorButtons.forEach(button => button.addEventListener("click", getOp));
+equalsButton.addEventListener("click", operate);
+signButton.addEventListener("click", toggleSign);
+
+//Functions
 
 function getNum() {
-    //Before user chooses an operator, they're entering num1
-    //After user chooses an operator, they're entering num2
-    if (!currentEquation.operator) {
-        currentEquation.num1 = currentEquation.num1.concat(this.id);
-        console.log(currentEquation);
+    if (currentEq.operator == "await") {
+        //If user finishes previous equation and then starts typing a new number, clear the currentEq object and start fresh
+        currentEq.operator = ``;
+        currentEq.num1 = this.id;
+        console.log(currentEq);
+    } else if (!currentEq.operator) {
+        //Before user chooses an operator, they're entering num1
+        currentEq.num1 = currentEq.num1.concat(this.id);
+        console.log(currentEq);
     } else {
-        currentEquation.num2 = currentEquation.num2.concat(this.id);
-        console.log(currentEquation);
+        //After user chooses an operator, they're entering num2
+        currentEq.num2 = currentEq.num2.concat(this.id);
+        console.log(currentEq);
     }
 }
 
-const operatorButtons = document.querySelectorAll("button.op");
-
-operatorButtons.forEach(button => button.addEventListener("click", getOp));
-
-function getOp() {
-    currentEquation.operator = this.id;
-    console.log(currentEquation);
+function toggleSign() {
+    switch(true) {
+        case !currentEq.operator && isNegative == false:
+            currentEq.num1 = "-" + currentEq.num1;
+            isNegative = true;
+            console.log(currentEq);
+            break;
+        case !currentEq.operator && isNegative == true:
+            currentEq.num1 = currentEq.num1.substring(1);
+            isNegative = false;
+            console.log(currentEq);
+            break;
+        case currentEq.operator && isNegative == false:
+            currentEq.num2 = "-" + currentEq.num2;
+            isNegative = true;
+            console.log(currentEq);
+            break;
+        case currentEq.operator && isNegative == true:
+            currentEq.num2 = currentEq.num2.substring(1);
+            isNegative = false;
+            console.log(currentEq);
+            break;
+    }
 }
 
-const equalsButton = document.querySelector("button.equals");
-
-equalsButton.addEventListener("click", operate);
+function getOp() {
+    currentEq.operator = this.id;
+    console.log(currentEq);
+    if (currentEq.num2 == ``) return;
+    if (currentEq.num2 != ``) operate();
+}
 
 function operate() {
     //Get the pieces of the equation
-    let a = Number(currentEquation.num1);
-    let b = Number(currentEquation.num2);
+    let a = Number(currentEq.num1);
+    let b = Number(currentEq.num2);
     let c;
     //No dividing by 0 allowed
-    if (currentEquation.operator == "/" && b == 0) console.log("You can't divide by 0, but nice try.");
-    //Put the pieces together and perform the equation
-    if (currentEquation.operator == "+") c = a + b;
-    if (currentEquation.operator == "-") c = a - b;
-    if (currentEquation.operator == "*") c = a * b;
-    if (currentEquation.operator == "/" && b != 0) c = a / b;
+    if (currentEq.operator == "/" && b == 0) console.log("You can't divide by 0, but nice try.");
+    //Evaluate
+    if (currentEq.operator == "+") c = a + b;
+    if (currentEq.operator == "-") c = a - b;
+    if (currentEq.operator == "*") c = a * b;
+    if (currentEq.operator == "/" && b != 0) c = a / b;
     console.log(c);
-    //Clear the currentEquation object
-    currentEquation.num1 = ``;
-    currentEquation.operator = ``;
-    currentEquation.num2 = ``;
+    display.innerText = `${c}`;
+    //c is the new num1. User can either continue by choosing an operator, or start typing an entirely new equation.
+    currentEq.num1 = c;
+    currentEq.operator = "await";
+    currentEq.num2 = ``;
 }
