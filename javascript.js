@@ -10,6 +10,8 @@ const history = document.getElementById("history");
 const numButtons = document.querySelectorAll("button.num");
 const operatorButtons = document.querySelectorAll("button.op");
 const equalsButton = document.querySelector("button.equals");
+const clearButton = document.querySelector("button.ac");
+const delButton = document.querySelector("button.del");
 const signButton = document.querySelector("button.sign");
 let isNegative = false;
 
@@ -18,6 +20,8 @@ let isNegative = false;
 numButtons.forEach(button => button.addEventListener("click", getNum));
 operatorButtons.forEach(button => button.addEventListener("click", getOp));
 equalsButton.addEventListener("click", operate);
+clearButton.addEventListener("click", clear);
+delButton.addEventListener("click", backspace);
 signButton.addEventListener("click", toggleSign);
 
 //Functions
@@ -93,4 +97,24 @@ function operate() {
     currentEq.num1 = c;
     currentEq.operator = "await";
     currentEq.num2 = ``;
+}
+
+function clear() {
+    currentEq.num1 = ``;
+    currentEq.operator = ``;
+    currentEq.num2 = ``;
+    display.innerText = `0`;
+}
+
+function backspace() {
+    if (currentEq.operator == "await") return; 
+    if (!currentEq.operator) {
+        toString(currentEq.num1);
+        currentEq.num1 = currentEq.num1.substring(0, (currentEq.num1.length - 1));
+        display.innerText = currentEq.num1;
+        console.log(currentEq);
+    } else {
+        currentEq.num2 = currentEq.num2.substring(0, (currentEq.num2.length - 1));
+        display.innerText = currentEq.num2;
+    }
 }
