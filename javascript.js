@@ -37,19 +37,9 @@ function operate() {
     let a = Number(currentEquation.num1);
     let b = Number(currentEquation.num2);
     let c;
-    switch (true) {
-        case currentEquation.operator == "+":
-            c = a + b;
-            break;
-        case currentEquation.operator == "-":
-            c = a - b;
-            break;
-        case currentEquation.operator == "*":
-            c = a * b;
-            break;
-        case currentEquation.operator == "/":
-            c = a / b;
-            break;
-    }
+    if (currentEquation.operator == "+") c = a + b;
+    if (currentEquation.operator == "-") c = a - b;
+    if (currentEquation.operator == "*") c = a * b;
+    if (currentEquation.operator == "/") c = a / b;
     console.log(c);
 }
