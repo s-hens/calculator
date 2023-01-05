@@ -21,7 +21,7 @@ body {
 
 #display {
     padding: 4px 4px 0;
-    margin: 2px;
+    margin: 2px 2px 8px;
     font-size: 36px;
     line-height: 36px;
     text-align: right;
@@ -44,13 +44,14 @@ button {
     width: 50px;
     height: 50px;
     margin: 2px;
+    vertical-align: top;
 }
 
 button:hover {
     cursor: pointer;
 }
 
-button:active, button.ac:active {
+button:active {
     transform: scale(0.95);
 }
 
@@ -82,17 +83,8 @@ button.ac:hover, button.del:hover, button.sign:hover {
     background-color: #674BCC;
 }
 
-button[name="divide"] {
-    transform: translateY(7px);
-}
-
-button.sign {
-    transform: translateY(7px);
-}
-
 button.ac {
     font-size: 20px;
-    transform: translateY(2px);
 }
 
 button.del {
