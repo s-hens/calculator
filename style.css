@@ -9,21 +9,23 @@ body {
     justify-content: center;
     font-family: 'DM Mono', monospace;
     font-size: 14px;
+    background: rgb(247,248,252);
+    background: linear-gradient(180deg, rgba(247,248,252,1) 0%, rgba(216,221,238,1) 100%);
 }
 
 .calculator {
     width: 216px;
-    padding: 4px;
+    padding: 8px;
     background-color: #C1C8E4;
 }
 
 #display {
     padding: 4px 4px 0;
-    margin: 2px 2px -2px;
+    margin: 2px;
     font-size: 36px;
     line-height: 36px;
     text-align: right;
-    background-color: #D8DDEE ;
+    background-color: #D8DDEE;
 }
 
 #controls {
@@ -46,6 +48,10 @@ button {
 
 button:hover {
     cursor: pointer;
+}
+
+button:active, button.ac:active {
+    transform: scale(0.95);
 }
 
 button[name="zero"] {
