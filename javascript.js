@@ -97,35 +97,21 @@ function operate() {
     if (currentEq.operator == "-") c = a - b;
     if (currentEq.operator == "*") c = a * b;
     if (currentEq.operator == "/" && b != 0) c = a / b;
-    //Truncate result to <= 9 digits, rounding when appropriate
-
-    //if (toString(c).includes(".")) c = c.toPrecision(8);
-    //else c = c.toPrecision(9);
-
-    //if (toString(c).includes(".")) c = Number(c.toFixed(7));
-    //else c = Number(c.toFixed(9));
-
-
-    if (toString(c).includes(".") && Math.ceil(Math.log10(c + 1)) > 8) {
-        c = Number(toString(c.toPrecision(7)));
-        console.log(c);
-        console.log("case 1");
-    } else if (Math.ceil(Math.log10(c + 1)) > 8) {
-        d = c.toPrecision(8);
-        if (toString(d).includes("e") && toString(d).length < 14) c = c.toPrecision((14 - toString(d).length));
-        if (toString(d).includes("e") && toString(d).length > 14) c = c.toPrecision(1);
-            //if the length is 9, precision is 5
-            //if the length is 10, precision is 4
-            //so l + p = 14
-            //so p = 14 - l
-            //p must be >1 so if l>14 then set p to 1
-        if (toString(d).includes("e") == false) c = c.toPrecision(8);
-        console.log("case 2");
+    //Make the answer as precise as possible while fitting in the display
+    let cString = c.toString();
+    let cPrecisionString = (c.toPrecision(9));
+    //If answer includes a decimal, round so that the final answer is 9 digits including the decimal point. Precision in this case depends on how many digits are before the decimal point.
+    if (cString.includes(".") == true && cPrecisionString.includes("e+") == false) {
+        c = Number((Number(c.toPrecision(8))).toFixed(8));
+    //If answer is in scientific notation:
+    } else if (cPrecisionString.includes("e+") == true) {
+        let precision = 8 - Number((cPrecisionString.length - cPrecisionString.indexOf("e+")));
+        if (precision < 1) precision = 1; 
+        c = c.toPrecision(precision).toString();
+    //If answer contains no decimal point and is not in scientific notation:
     } else {
-        console.log(c);
-        console.log("case 3");
-    };
-
+        c = Number((Number(c.toPrecision(9))).toFixed(9));
+    }
     //Display result
     display.innerText = `${c}`;
     if (history.innerHTML == ``) {
