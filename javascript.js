@@ -8,25 +8,40 @@ const currentEq = {
 const display = document.getElementById("display");
 const history = document.getElementById("history");
 const numButtons = document.querySelectorAll("button.num");
+const numKeys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
 const operatorButtons = document.querySelectorAll("button.op");
+const operatorKeys = ["+", "-", "*", "/"];
 const equalsButton = document.querySelector("button.equals");
-const clearButton = document.querySelector("button.ac");
+const equalsKeys = ["=", "Enter"];
 const delButton = document.querySelector("button.del");
+const delKeys = ["Delete", "Backspace"];
+const clearButton = document.querySelector("button.ac");
 const signButton = document.querySelector("button.sign");
 let isNegative = false;
 
 //Event listeners
 
 numButtons.forEach(button => button.addEventListener("click", getNum));
+window.addEventListener("keydown", getNum);
 operatorButtons.forEach(button => button.addEventListener("click", getOp));
-equalsButton.addEventListener("click", operate);
-clearButton.addEventListener("click", clear);
+window.addEventListener("keydown", getOp);
+equalsButton.addEventListener("click", evaluate);
+window.addEventListener("keydown", evaluate);
 delButton.addEventListener("click", backspace);
+window.addEventListener("keydown", backspace);
+clearButton.addEventListener("click", clear);
 signButton.addEventListener("click", toggleSign);
 
 //Functions
 
-function getNum() {
+function getNum(e) {
+    //Determine if relevant keydown, click, or irrelevant keydown
+    if (numKeys.includes(e.key) == true) {
+        this.id = e.key;
+    } else if (e.pointerId == 1) {
+    } else {
+        return;
+    }
     if (currentEq.operator == "await") {
         //If user finishes previous equation and then starts typing a new number, clear the currentEq object and start fresh
         currentEq.operator = ``;
@@ -74,13 +89,27 @@ function toggleSign() {
     }
 }
 
-function getOp() {
+function getOp(e) {
+    //Determine if relevant keydown, click, or irrelevant keydown
+    if (operatorKeys.includes(e.key) == true) {
+        this.id = e.key;
+    } else if (e.pointerId == 1) {
+    } else {
+        return;
+    }
     currentEq.operator = this.id;
     if (currentEq.num2 == ``) return;
-    if (currentEq.num2 != ``) operate();
+    if (currentEq.num2 != ``) evaluate();
 }
 
-function operate() {
+function evaluate(e) {
+    //Determine if relevant keydown, click, or irrelevant keydown
+    if (equalsKeys.includes(e.key) == true) {
+        this.id = e.key;
+    } else if (e.pointerId == 1) {
+    } else {
+        return;
+    }
     //Get the pieces of the equation
     let a = Number(currentEq.num1);
     let b = Number(currentEq.num2);
@@ -97,18 +126,15 @@ function operate() {
     if (currentEq.operator == "-") c = a - b;
     if (currentEq.operator == "*") c = a * b;
     if (currentEq.operator == "/" && b != 0) c = a / b;
-    //Make the answer as precise as possible while fitting in the display
+    //Make the answer as precise as possible while fitting in the display. Max length is 9 digits
     let cString = c.toString();
     let cPrecisionString = (c.toPrecision(9));
-    //If answer includes a decimal, round so that the final answer is 9 digits including the decimal point. Precision in this case depends on how many digits are before the decimal point.
     if (cString.includes(".") == true && cPrecisionString.includes("e+") == false) {
         c = Number((Number(c.toPrecision(8))).toFixed(8));
-    //If answer is in scientific notation:
     } else if (cPrecisionString.includes("e+") == true) {
         let precision = 8 - Number((cPrecisionString.length - cPrecisionString.indexOf("e+")));
         if (precision < 1) precision = 1; 
         c = c.toPrecision(precision).toString();
-    //If answer contains no decimal point and is not in scientific notation:
     } else {
         c = Number((Number(c.toPrecision(9))).toFixed(9));
     }
@@ -132,16 +158,19 @@ function clear() {
     display.innerText = `0`;
 }
 
-function backspace() {
-    if (currentEq.operator == "await" || display.innerText.length == 1) {
-        clear();
-    } else if (!currentEq.operator) {
-        toString(currentEq.num1);
-        currentEq.num1 = currentEq.num1.substring(0, (currentEq.num1.length - 1));
-        display.innerText = currentEq.num1;
-        console.log(currentEq);
-    } else {
-        currentEq.num2 = currentEq.num2.substring(0, (currentEq.num2.length - 1));
-        display.innerText = currentEq.num2;
-    }
+function backspace(e) {
+    //Determine if relevant keydown, click, or irrelevant keydown
+    if (delKeys.includes(e.key) == true || e.pointerId == 1) {
+        //Delete most recent input
+        if (currentEq.operator == "await" || display.innerText.length == 1) {
+            clear();
+        } else if (!currentEq.operator) {
+            toString(currentEq.num1);
+            currentEq.num1 = currentEq.num1.substring(0, (currentEq.num1.length - 1));
+            display.innerText = currentEq.num1;
+        } else {
+            currentEq.num2 = currentEq.num2.substring(0, (currentEq.num2.length - 1));
+            display.innerText = currentEq.num2;
+        }
+    } else return;
 }
