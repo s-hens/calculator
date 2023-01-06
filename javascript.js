@@ -22,23 +22,34 @@ let isNegative = false;
 //Event listeners
 
 numButtons.forEach(button => button.addEventListener("click", getNum));
+numButtons.forEach(button => button.addEventListener("touch", getNum));
 window.addEventListener("keydown", getNum);
+
 operatorButtons.forEach(button => button.addEventListener("click", getOp));
+operatorButtons.forEach(button => button.addEventListener("touch", getOp));
 window.addEventListener("keydown", getOp);
+
 equalsButton.addEventListener("click", evaluate);
+equalsButton.addEventListener("touch", evaluate);
 window.addEventListener("keydown", evaluate);
+
 delButton.addEventListener("click", backspace);
+delButton.addEventListener("touch", backspace);
 window.addEventListener("keydown", backspace);
+
 clearButton.addEventListener("click", clear);
+clearButton.addEventListener("touch", clear);
+
 signButton.addEventListener("click", toggleSign);
+signButton.addEventListener("touch", toggleSign);
 
 //Functions
 
 function getNum(e) {
-    //Determine if relevant keydown, click, or irrelevant keydown
+    //Determine if relevant keydown OR click/touch OR irrelevant keydown
     if (numKeys.includes(e.key) == true) {
         this.id = e.key;
-    } else if (e.pointerId == 1) {
+    } else if (e.pointerId == 1 || e.pointerType == "touch") {
     } else {
         return;
     }
@@ -90,10 +101,10 @@ function toggleSign() {
 }
 
 function getOp(e) {
-    //Determine if relevant keydown, click, or irrelevant keydown
-    if (operatorKeys.includes(e.key) == true) {
+    //Determine if relevant keydown OR click/touch OR irrelevant keydown
+    if (numKeys.includes(e.key) == true) {
         this.id = e.key;
-    } else if (e.pointerId == 1) {
+    } else if (e.pointerId == 1 || e.pointerType == "touch") {
     } else {
         return;
     }
@@ -103,10 +114,10 @@ function getOp(e) {
 }
 
 function evaluate(e) {
-    //Determine if relevant keydown, click, or irrelevant keydown
-    if (equalsKeys.includes(e.key) == true) {
+    //Determine if relevant keydown OR click/touch OR irrelevant keydown
+    if (numKeys.includes(e.key) == true) {
         this.id = e.key;
-    } else if (e.pointerId == 1) {
+    } else if (e.pointerId == 1 || e.pointerType == "touch") {
     } else {
         return;
     }
@@ -160,7 +171,7 @@ function clear() {
 
 function backspace(e) {
     //Determine if relevant keydown, click, or irrelevant keydown
-    if (delKeys.includes(e.key) == true || e.pointerId == 1) {
+    if (delKeys.includes(e.key) == true || e.pointerId == 1 || e.pointerType == "touch") {
         //Delete most recent input
         if (currentEq.operator == "await" || display.innerText.length == 1) {
             clear();
