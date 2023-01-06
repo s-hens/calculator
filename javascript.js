@@ -50,14 +50,14 @@ function getNum(e) {
     } else if (!currentEq.operator) {
         //Max length is 9 digits, including <= 1 decimal point
         if (currentEq.num1.includes(".") && this.id == ".") return;
-        if (currentEq.num1.length > 8) return;
+        if (currentEq.num1.length > 9) return;
         //Before user chooses an operator, they're entering num1
         currentEq.num1 = currentEq.num1.concat(this.id);
         display.innerText = currentEq.num1;
     } else {
         //Max length is 9 digits, including <= 1 decimal point
         if (currentEq.num2.includes(".") && this.id == ".") return;
-        if (currentEq.num2.length > 8) return;
+        if (currentEq.num2.length > 9) return;
         //After user chooses an operator, they're entering num2
         currentEq.num2 = currentEq.num2.concat(this.id);
         display.innerText = currentEq.num2;
@@ -128,15 +128,15 @@ function evaluate(e) {
     if (currentEq.operator == "/" && b != 0) c = a / b;
     //Make the answer as precise as possible while fitting in the display. Max length is 9 digits
     let cString = c.toString();
-    let cPrecisionString = (c.toPrecision(9));
+    let cPrecisionString = (c.toPrecision(10));
     if (cString.includes(".") == true && cPrecisionString.includes("e+") == false) {
-        c = Number((Number(c.toPrecision(8))).toFixed(8));
+        c = Number((Number(c.toPrecision(9))).toFixed(8));
     } else if (cPrecisionString.includes("e+") == true) {
-        let precision = 8 - Number((cPrecisionString.length - cPrecisionString.indexOf("e+")));
+        let precision = 9 - Number((cPrecisionString.length - cPrecisionString.indexOf("e+")));
         if (precision < 1) precision = 1; 
         c = c.toPrecision(precision).toString();
     } else {
-        c = Number((Number(c.toPrecision(9))).toFixed(9));
+        c = Number((Number(c.toPrecision(10))).toFixed(10));
     }
     //Display result
     display.innerText = `${c}`;

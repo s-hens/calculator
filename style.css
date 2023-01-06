@@ -14,16 +14,17 @@ body {
 }
 
 .calculator {
-    width: 216px;
-    padding: 8px;
+    height: 71%;
+    aspect-ratio: 2 / 3;
     background-color: #C1C8E4;
+    padding: 1vh;
 }
 
 #display {
-    padding: 4px 4px 0;
-    margin: 2px 2px 8px;
-    font-size: 36px;
-    line-height: 36px;
+    font-size: 7vh;
+    line-height: 9vh;
+    padding: 1vh;
+    margin: 1vh 1vh 0;
     text-align: right;
     background-color: #D8DDEE;
 }
@@ -31,19 +32,18 @@ body {
 #controls {
     font-size: 0;
     line-height: 0;
+    margin: 1%;
 }
 
 button {
     border: none;
-    padding: 10px;
     text-align: center;
     font-family: 'DM Mono', monospace;
     color: white;
-    font-size: 36px;
-    line-height: 20px;
-    width: 50px;
-    height: 50px;
-    margin: 2px;
+    font-size: 6vh;
+    width: 23%;
+    aspect-ratio: 1 / 1;
+    margin: 1%;
     vertical-align: top;
 }
 
@@ -56,8 +56,10 @@ button:active {
 }
 
 button[name="zero"] {
-    width: 104px;
+    width: 48%;
+    aspect-ratio: 2 / 0.96;
 }
+
 
 button.num {
     background-color: #5680E9;
@@ -83,16 +85,13 @@ button.ac:hover, button.del:hover, button.sign:hover {
     background-color: #674BCC;
 }
 
-button.ac {
-    font-size: 20px;
-}
-
-button.del {
-    font-size: 14px;
-}
-
 #history {
-    width: 196px;
-    padding: 4px;
+    display: none;
+    background-color: #FFFFFF;
+    width: 216px;
+    height: 216px;
+    padding: 8px;
+    margin: 8px;
     text-align: right;
+    overflow: auto;
 }
