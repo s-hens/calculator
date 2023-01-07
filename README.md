@@ -19,7 +19,7 @@ This is a simple calculator built in vanilla JavaScript. Done as part of [The Od
 	- Responsive layout adjusts to screen height
 	- Accepts clicks, keyboard input, and touchscreen input
 	- User can string together several operations, with each pair of numbers being evaluated at a time
-	- "C" button clears all, "⇦" backspace button deletes most recent digit or character
+	- "C" button clears all, "⌫" backspace button deletes most recent digit or character
 	- Last equation is displayed in user interface
 
 ## I learned about...
