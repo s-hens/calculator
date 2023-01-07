@@ -16,8 +16,10 @@ const equalsKeys = ["=", "Enter"];
 const delButton = document.querySelector("button.del");
 const delKeys = ["Delete", "Backspace"];
 const clearButton = document.querySelector("button.ac");
+const clearKeys = ["c", "C"];
 const signButton = document.querySelector("button.sign");
 let isNegative = false;
+let clearFromBackspace = false;
 
 //Event listeners
 
@@ -39,6 +41,7 @@ window.addEventListener("keydown", backspace);
 
 clearButton.addEventListener("click", clear);
 clearButton.addEventListener("touch", clear);
+window.addEventListener("keydown", clear);
 
 signButton.addEventListener("click", toggleSign);
 signButton.addEventListener("touch", toggleSign);
@@ -102,7 +105,7 @@ function toggleSign() {
 
 function getOp(e) {
     //Determine if relevant keydown OR click/touch OR irrelevant keydown
-    if (numKeys.includes(e.key) == true) {
+    if (operatorKeys.includes(e.key) == true) {
         this.id = e.key;
     } else if (e.pointerId == 1 || e.pointerType == "touch") {
     } else {
@@ -115,7 +118,7 @@ function getOp(e) {
 
 function evaluate(e) {
     //Determine if relevant keydown OR click/touch OR irrelevant keydown
-    if (numKeys.includes(e.key) == true) {
+    if (equalsKeys.includes(e.key) == true) {
         this.id = e.key;
     } else if (e.pointerId == 1 || e.pointerType == "touch") {
     } else {
@@ -158,12 +161,16 @@ function evaluate(e) {
     currentEq.num2 = ``;
 }
 
-function clear() {
-    currentEq.num1 = ``;
-    currentEq.operator = ``;
-    currentEq.num2 = ``;
-    display.innerText = `0`;
-    history.innerText = ``;
+function clear(e) {
+    //Determine if relevant keydown OR click/touch OR irrelevant keydown
+    if (clearFromBackspace == true || e.key == "c" || e.pointerId == 1 || e.pointerType == "touch") {
+        currentEq.num1 = ``;
+        currentEq.operator = ``;
+        currentEq.num2 = ``;
+        display.innerText = `0`;
+        history.innerText = ``;
+        clearFromBackspace = false;
+    } else return;
 }
 
 function backspace(e) {
@@ -171,7 +178,8 @@ function backspace(e) {
     if (delKeys.includes(e.key) == true || e.pointerId == 1 || e.pointerType == "touch") {
         //Delete most recent input
         if (currentEq.operator == "await" || display.innerText.length == 1) {
-            clear();
+            clearFromBackspace = true;
+            clear(e);
         } else if (!currentEq.operator) {
             toString(currentEq.num1);
             currentEq.num1 = currentEq.num1.substring(0, (currentEq.num1.length - 1));
