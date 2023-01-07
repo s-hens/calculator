@@ -4,14 +4,12 @@
 
 ## Summary
 
-This is a simple calculator built in vanilla JavaScript.
-
-Done as part of [The Odin Project](https://www.theodinproject.com/) foundations curriculum.
+This is a simple calculator built in vanilla JavaScript. Done as part of [The Odin Project](https://www.theodinproject.com/) foundations curriculum.
 
 ## Features
 
 - Maths
-	- Handles any integers and decimals
+	- Handles integers and decimals
 	- Handles addition, subtraction, multiplication, and division
 	- Prevents user from dividing by 0
 	- Large answers are given in scientific notation
@@ -21,7 +19,7 @@ Done as part of [The Odin Project](https://www.theodinproject.com/) foundations 
 	- Responsive layout adjusts to screen height
 	- Accepts clicks, keyboard input, and touchscreen input
 	- User can string together several operations, with each pair of numbers being evaluated at a time
-	- "C" button clears all, "⇦" backspace button deletes most recently typed digit or character
+	- "C" button clears all, "⇦" backspace button deletes most recent digit or character
 	- Last equation is displayed in user interface
 
 ## I learned about...
