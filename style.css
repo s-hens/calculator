@@ -21,13 +21,12 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    position: relative;
 }
 
 #display {
     font-size: 7vh;
     line-height: 9vh;
-    padding: 1vh;
+    padding: 4vh 1vh 1vh;
     margin: 0 1vh 0;
     text-align: right;
     background-color: #D8DDEE;
@@ -96,11 +95,16 @@ button.ac:hover, button.del:hover, button.sign:hover {
     height: 4vh;
     padding: 1vh;
     margin: 1vh 1vh 0;
-    background-color: #D8DDEE;
+    z-index: 2;
+    /*background-color: #D8DDEE;*/
     display: flex;
     align-items: flex-end;
-    overflow-x: hidden;
+    overflow-x: visible;
     overflow-y: auto;
+}
+
+#histwrapper {
+    transform: translateY(4vh);
 }
 
 #link {
