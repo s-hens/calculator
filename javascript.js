@@ -167,7 +167,7 @@ function clear() {
 }
 
 function backspace(e) {
-    //Determine if relevant keydown, click, or irrelevant keydown
+    //Determine if relevant keydown OR click/touch OR irrelevant keydown
     if (delKeys.includes(e.key) == true || e.pointerId == 1 || e.pointerType == "touch") {
         //Delete most recent input
         if (currentEq.operator == "await" || display.innerText.length == 1) {
