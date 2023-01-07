@@ -92,11 +92,10 @@ button.ac:hover, button.del:hover, button.sign:hover {
     font-size: 2vh;
     line-height: 2vh;
     letter-spacing: -0.15 em;
-    height: 4vh;
-    padding: 1vh;
-    margin: 1vh 1vh 0;
+    height: 2vh;
+    padding: 0 1vh 1vh;
+    margin: 0 1vh 0;
     z-index: 2;
-    /*background-color: #D8DDEE;*/
     display: flex;
     align-items: flex-end;
     overflow-x: visible;
