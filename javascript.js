@@ -61,16 +61,16 @@ function getNum(e) {
         currentEq.num1 = this.id;
         display.innerText = currentEq.num1;
     } else if (!currentEq.operator) {
-        //Max length is 7 digits, including <= 1 decimal point
+        //Max length is 8 digits, including <= 1 decimal point
         if (currentEq.num1.includes(".") && this.id == ".") return;
-        if (currentEq.num1.length > 6) return;
+        if (currentEq.num1.length > 7) return;
         //Before user chooses an operator, they're entering num1
         currentEq.num1 = currentEq.num1.concat(this.id);
         display.innerText = currentEq.num1;
     } else {
-        //Max length is 7 digits, including <= 1 decimal point
+        //Max length is 8 digits, including <= 1 decimal point
         if (currentEq.num2.includes(".") && this.id == ".") return;
-        if (currentEq.num2.length > 6) return;
+        if (currentEq.num2.length > 7) return;
         //After user chooses an operator, they're entering num2
         currentEq.num2 = currentEq.num2.concat(this.id);
         display.innerText = currentEq.num2;
@@ -139,17 +139,17 @@ function evaluate(e) {
     if (currentEq.operator == "-") c = a - b;
     if (currentEq.operator == "*") c = a * b;
     if (currentEq.operator == "/" && b != 0) c = a / b;
-    //Make the answer as precise as possible while fitting in the display. Max length is 7 digits
+    //Make the answer as precise as possible while fitting in the display. Max length is 8 digits
     let cString = c.toString();
-    let cPrecisionString = (c.toPrecision(7));
+    let cPrecisionString = (c.toPrecision(8));
     if (cString.includes(".") == true && cPrecisionString.includes("e+") == false) {
-        c = Number((Number(c.toPrecision(6))).toFixed(5));
+        c = Number((Number(c.toPrecision(7))).toFixed(6));
     } else if (cPrecisionString.includes("e+") == true) {
-        let precision = 6 - Number((cPrecisionString.length - cPrecisionString.indexOf("e+")));
+        let precision = 7 - Number((cPrecisionString.length - cPrecisionString.indexOf("e+")));
         if (precision < 1) precision = 1; 
         c = c.toPrecision(precision).toString();
     } else {
-        c = Number((Number(c.toPrecision(7))).toFixed(7));
+        c = Number((Number(c.toPrecision(8))).toFixed(8));
     }
     //Display result
     display.innerText = `${c}`;
