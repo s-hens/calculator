@@ -22,8 +22,12 @@ This is a simple calculator built in vanilla JavaScript. Done as part of [The Od
 	- "C" button clears all, "⌫" backspace button deletes most recent digit or character
 	- Last equation is displayed in user interface
 
+- Font
+	- This project uses [Everson Mono Bold](https://www.evertype.com/emono/) by M. Everson.
+
 ## I learned about...
 
 - Manipulating objects, numbers, and strings
 - Responsive design
 - Touchscreen events
+- Importing font families
