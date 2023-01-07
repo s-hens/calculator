@@ -16,7 +16,6 @@ const equalsKeys = ["=", "Enter"];
 const delButton = document.querySelector("button.del");
 const delKeys = ["Delete", "Backspace"];
 const clearButton = document.querySelector("button.ac");
-const clearKeys = ["c", "C"];
 const signButton = document.querySelector("button.sign");
 let isNegative = false;
 let clearFromBackspace = false;
