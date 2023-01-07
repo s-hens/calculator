@@ -24,26 +24,32 @@ let clearFromBackspace = false;
 
 numButtons.forEach(button => button.addEventListener("click", getNum));
 numButtons.forEach(button => button.addEventListener("touch", getNum));
+numButtons.forEach(button => button.addEventListener("touchstart", getNum));
 window.addEventListener("keydown", getNum);
 
 operatorButtons.forEach(button => button.addEventListener("click", getOp));
 operatorButtons.forEach(button => button.addEventListener("touch", getOp));
+operatorButtons.forEach(button => button.addEventListener("touchstart", getOp));
 window.addEventListener("keydown", getOp);
 
 equalsButton.addEventListener("click", evaluate);
 equalsButton.addEventListener("touch", evaluate);
+equalsButton.addEventListener("touchstart", evaluate);
 window.addEventListener("keydown", evaluate);
 
 delButton.addEventListener("click", backspace);
 delButton.addEventListener("touch", backspace);
+delButton.addEventListener("touchstart", backspace);
 window.addEventListener("keydown", backspace);
 
 clearButton.addEventListener("click", clear);
 clearButton.addEventListener("touch", clear);
+clearButton.addEventListener("touchstart", clear);
 window.addEventListener("keydown", clear);
 
 signButton.addEventListener("click", toggleSign);
 signButton.addEventListener("touch", toggleSign);
+signButton.addEventListener("touchstart", toggleSign);
 
 //Functions
 
