@@ -29,7 +29,6 @@ body {
 }
 
 .calculator {
-    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 1vh;
@@ -56,7 +55,6 @@ body {
 }
 
 .row {
-    width: 100%;
     display: flex;
     gap: 1vh;
 }
