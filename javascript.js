@@ -111,12 +111,12 @@ function getOp(e) {
         display.innerText = currentEq.operator;
         return;
     } else if (currentEq.num2 != `` && currentEq.num1 != ``) {
+        console.log(currentEq.operator);
         stringingOps = true;
         currentEq.operator = this.id;
         display.innerText = currentEq.operator;
         evaluate();
     } else {
-        evaluate();
     }
 }
 
