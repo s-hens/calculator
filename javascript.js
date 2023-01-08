@@ -105,6 +105,7 @@ function getOp(e) {
         return;
     }
     currentEq.operator = this.id;
+    display.innerText = currentEq.operator;
     if (currentEq.num2 == ``) return;
     if (currentEq.num2 != ``) evaluate();
 }
