@@ -28,6 +28,7 @@ This is a simple calculator built in vanilla JavaScript. Done as part of [The Od
 ## I learned about...
 
 - Manipulating objects, numbers, and strings
-- Responsive design
+- Responsive & mobile-friendly design
+- Testing cross-browser compatibility
 - Touchscreen events
 - Importing font families
