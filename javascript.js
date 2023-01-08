@@ -19,6 +19,7 @@ const clearButton = document.querySelector("button.ac");
 const signButton = document.querySelector("button.sign");
 let isNegative = false;
 let clearFromBackspace = false;
+let stringingOps = false;
 
 //Event listeners
 
@@ -49,7 +50,7 @@ function getNum(e) {
     } else {
         return;
     }
-    if (currentEq.operator == "await") {
+    if (currentEq.operator == "await" && stringingOps == false) {
         //If user finishes previous equation and then starts typing a new number, clear the currentEq object and start fresh
         currentEq.operator = ``;
         currentEq.num1 = this.id;
@@ -104,17 +105,26 @@ function getOp(e) {
     } else {
         return;
     }
-    currentEq.operator = this.id;
-    display.innerText = currentEq.operator;
-    if (currentEq.num2 == ``) return;
-    if (currentEq.num2 != ``) evaluate();
+    //Determine if user is stringing together multiple equations
+    if (currentEq.num2 == `` && currentEq.num1 != ``) {
+        currentEq.operator = this.id;
+        display.innerText = currentEq.operator;
+        return;
+    } else if (currentEq.num2 != `` && currentEq.num1 != ``) {
+        stringingOps = true;
+        currentEq.operator = this.id;
+        display.innerText = currentEq.operator;
+        evaluate();
+    } else {
+        evaluate();
+    }
 }
 
 function evaluate(e) {
     //Determine if relevant keydown OR click/touch OR irrelevant keydown
-    if (equalsKeys.includes(e.key) == true) {
-        this.id = e.key;
-    } else if (e.type == "click") {
+    if (stringingOps == true) {
+    } else if (equalsKeys.includes(e.key) == true || e.type == "click") {
+        stringingOps = false;
     } else {
         return;
     }
@@ -151,8 +161,11 @@ function evaluate(e) {
     history.innerHTML = `${a} ${currentEq.operator} ${b} = ${c}`;
     //User can either continue to string together operations by choosing an operator, or start typing an entirely new equation by choosing a number
     currentEq.num1 = c;
-    currentEq.operator = "await";
     currentEq.num2 = ``;
+    //Allow users to string operations without pressing = between each
+    if (stringingOps == false) {
+        currentEq.operator = "await";
+    }
 }
 
 function clear(e) {
