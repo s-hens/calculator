@@ -25,20 +25,19 @@ body {
     max-height: 100vh;
     display: flex;
     flex-direction: column;
-    gap: 1vh;
 }
 
 .calculator {
     display: flex;
     flex-direction: column;
-    gap: 1vh;
-    padding: 1vh;
     background-color: #C1C8E4;
+    padding: 1vh;
 }
 
 #history {
     height: 3vh;
     width: 100%;
+    margin-bottom: 1vh;
     font-size: 3vh;
     line-height: 4vh;
     background-color: #D8DDEE;
@@ -48,6 +47,7 @@ body {
 #display {
     height: 9vh;
     width: 100%;
+    margin-bottom: 1vh;
     font-size: 9vh;
     line-height: 10vh;
     text-align: right;
@@ -56,18 +56,23 @@ body {
 
 .row {
     display: flex;
-    gap: 1vh;
 }
 
 button {
     border: none;
     height: 10vh;
     width: 10vh;
+    margin-right: 1vh;
+    margin-bottom: 1vh;
     text-align: center;
     font-family: 'EversonMono', monospace;
     font-size: 9vh;
     line-height: 9vh;
     color: white;
+}
+
+.lastrow button {
+    margin-bottom: 0;
 }
 
 button[name="zero"] {
@@ -93,6 +98,7 @@ button.num:hover {
 
 button.op, button.equals {
     background-color: #BF56E9;
+    margin-right: 0;
 }
 
 button.op:hover, button.equals:hover {
@@ -120,4 +126,5 @@ a:hover {
     height: 2vh;
     font-size: 2vh;
     line-height: 2vh;
+    padding: 1vh;
 }
